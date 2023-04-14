@@ -5,6 +5,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
+	"errors"
 	"fmt"
 	"io"
 )
@@ -32,7 +33,11 @@ func (ac *AESCipher) PKCS7Unpadding(data []byte) []byte {
 }
 
 func (ac *AESCipher) Encrypt(data []byte) ([]byte, error) {
-	// Input Block
+	if len(data) == 0 {
+		return make([]byte, 0), errors.New("cipher data can be empty")
+	}
+
+	// Create cipher block
 	block, err := aes.NewCipher([]byte(ac.key))
 	if err != nil {
 		return make([]byte, 0), err
@@ -55,14 +60,14 @@ func (ac *AESCipher) Encrypt(data []byte) ([]byte, error) {
 }
 
 func (ac *AESCipher) Decrypt(data []byte) ([]byte, error) {
-	// Input Block
-	block, err := aes.NewCipher([]byte(ac.key))
-	if err != nil {
-		return make([]byte, 0), nil
-	}
-
 	if len(data) < aes.BlockSize {
 		return make([]byte, 0), fmt.Errorf("invalid cipher data size")
+	}
+
+	// Create cipher Block
+	block, err := aes.NewCipher([]byte(ac.key))
+	if err != nil {
+		return make([]byte, 0), err
 	}
 
 	iv := data[:aes.BlockSize]
@@ -77,6 +82,13 @@ func (ac *AESCipher) Decrypt(data []byte) ([]byte, error) {
 	return data, nil
 }
 
-func NewAESCipher(key string) Cipher {
-	return &AESCipher{key: key}
+func NewAESCipher(key string) (Cipher, error) {
+	k := len([]byte(key))
+	switch k {
+	default:
+		return nil, errors.New("invalid key size, 16, 24 or 32")
+	case 16, 24, 32:
+		break
+	}
+	return &AESCipher{key: key}, nil
 }
