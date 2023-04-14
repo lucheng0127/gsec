@@ -20,9 +20,16 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.19
+        
+    - name: Make dir
+      run: |
+        mkdir build
+        mkdir cover
 
     - name: Build
       run: echo "Not now"
 
     - name: Test
-      run: go test -gcflags=-l -coverprofile cover/cover.out ./pkg/... && go tool cover -html=./cover/cover.out -o cover/cover.html
+      run: |
+        go test -gcflags=-l -coverprofile cover/cover.out ./pkg/...
+        go tool cover -html=./cover/cover.out -o cover/cover.html
