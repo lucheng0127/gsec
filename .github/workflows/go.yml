@@ -25,4 +25,4 @@ jobs:
       run: echo "Not now"
 
     - name: Test
-      run: go test -gcflags=-l -coverprofile cover/cover.out && go tool cover -html=./cover/cover.out -o cover/cover.html
+      run: go test -gcflags=-l -coverprofile cover/cover.out ./pkg/... && go tool cover -html=./cover/cover.out -o cover/cover.html
