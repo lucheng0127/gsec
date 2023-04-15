@@ -18,18 +18,22 @@ import (
 type AuthTestSuite struct {
 	suite.Suite
 	userbook map[string]string
+	ctrl     *gomock.Controller
 }
 
 func (s *AuthTestSuite) SetupTest() {
 	s.userbook = make(map[string]string)
 	s.userbook["lucheng"] = "0123456789abcdef"
+	ctrl := gomock.NewController(s.T())
+	s.ctrl = ctrl
+}
+
+func (s *AuthTestSuite) TearDownTest() {
+	s.ctrl.Finish()
 }
 
 func (s *AuthTestSuite) TestHandle() {
-	ctrl := gomock.NewController(s.T())
-	defer ctrl.Finish()
-
-	mock_auth := mocks.NewMockAuth(ctrl)
+	mock_auth := mocks.NewMockAuth(s.ctrl)
 	monkey.Patch(auth.NewUserAuth, func(username, psk string) auth.Auth {
 		return mock_auth
 	})
