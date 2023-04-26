@@ -7,6 +7,7 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
+	"math"
 	"time"
 )
 
@@ -29,7 +30,6 @@ func (ta *TOTPAuth) Validate(data []byte) (bool, error) {
 }
 
 func GenerateCode(secret string) (string, error) {
-	// FIXME
 	// TOTP algorithm refer to https://jacob.jkrall.net/totp
 	secretBytes, err := base32.StdEncoding.DecodeString(secret)
 	if err != nil {
@@ -50,11 +50,13 @@ func GenerateCode(secret string) (string, error) {
 	offset := int(sum[len(sum)-1] & 0x0f)
 
 	// Get the dynamic data of totp
-	codeBytes := sum[offset : offset+4]
-	code := binary.BigEndian.Uint32(codeBytes)
+	code := (uint32(sum[offset]&0x7F) << 24) +
+		(uint32(sum[offset+1]) << 16) +
+		(uint32(sum[offset+2]) << 8) +
+		(uint32(sum[offset+3]))
 
 	// Use the last 6 numbers as the totp
-	totp := code % 1000000
+	totp := int(int(code) % int(math.Pow10(6)))
 	return fmt.Sprintf("%06d", totp), nil
 }
 
