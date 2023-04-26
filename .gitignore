@@ -1,3 +1,5 @@
 .vscode
 cover
 build
+agent/gsecagent
+apt/gsec

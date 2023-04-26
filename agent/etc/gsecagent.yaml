@@ -1,0 +1,10 @@
+Name: gsecagent.rpc
+ListenOn: 127.0.0.1:8080
+Users:
+  shawn: JFZUCU3FMNZGK5A=
+
+# Do not insert into etcd
+#Etcd:
+#  Hosts:
+#  - 127.0.0.1:2379
+#  Key: gsecagent.rpc

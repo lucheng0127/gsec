@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package gsecagent;
+option go_package="./gsecagent";
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string username = 1;
+  string token = 2;
+  int64 expire = 3;
+}
+
+service Gsecagent {
+  rpc Login(LoginRequest) returns(LoginResponse);
+}

@@ -3,8 +3,8 @@ package server
 import (
 	"fmt"
 
-	"github.com/lucheng0127/gsec/pkg/auth"
-	"github.com/lucheng0127/gsec/pkg/cipher"
+	"github.com/lucheng0127/gsec/agent/pkg/auth"
+	"github.com/lucheng0127/gsec/agent/pkg/cipher"
 )
 
 func handle_auth(userbook map[string]string, username string, authData []byte) error {

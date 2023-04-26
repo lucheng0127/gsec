@@ -7,8 +7,8 @@ import (
 
 	"bou.ke/monkey"
 	"github.com/golang/mock/gomock"
+	"github.com/lucheng0127/gsec/agent/pkg/cipher"
 	"github.com/lucheng0127/gsec/mocks/mock_cipher"
-	"github.com/lucheng0127/gsec/pkg/cipher"
 )
 
 func TestUserAuth_Validate(t *testing.T) {

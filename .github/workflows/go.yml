@@ -31,5 +31,5 @@ jobs:
 
     - name: Test
       run: |
-        go test -gcflags=-l -coverprofile cover/cover.out ./pkg/...
+        go test -gcflags=-l -coverprofile cover/cover.out ./agent/pkg/...
         go tool cover -html=./cover/cover.out -o cover/cover.html

@@ -5,8 +5,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/lucheng0127/gsec/pkg/ctx"
-	"github.com/lucheng0127/gsec/pkg/pkt"
+	"github.com/lucheng0127/gsec/agent/pkg/ctx"
+	"github.com/lucheng0127/gsec/agent/pkg/pkt"
 	"github.com/sirupsen/logrus"
 )
 

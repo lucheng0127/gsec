@@ -7,10 +7,10 @@ import (
 
 	"bou.ke/monkey"
 	"github.com/golang/mock/gomock"
+	"github.com/lucheng0127/gsec/agent/pkg/auth"
+	"github.com/lucheng0127/gsec/agent/pkg/cipher"
 	"github.com/lucheng0127/gsec/mocks"
 	"github.com/lucheng0127/gsec/mocks/mock_cipher"
-	"github.com/lucheng0127/gsec/pkg/auth"
-	"github.com/lucheng0127/gsec/pkg/cipher"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )

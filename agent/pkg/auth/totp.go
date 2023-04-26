@@ -29,6 +29,7 @@ func (ta *TOTPAuth) Validate(data []byte) (bool, error) {
 }
 
 func GenerateCode(secret string) (string, error) {
+	// FIXME
 	// TOTP algorithm refer to https://jacob.jkrall.net/totp
 	secretBytes, err := base32.StdEncoding.DecodeString(secret)
 	if err != nil {
@@ -55,4 +56,8 @@ func GenerateCode(secret string) (string, error) {
 	// Use the last 6 numbers as the totp
 	totp := code % 1000000
 	return fmt.Sprintf("%06d", totp), nil
+}
+
+func NewTOTPAuth(username, secret string) Auth {
+	return &TOTPAuth{username: username, secret: secret}
 }

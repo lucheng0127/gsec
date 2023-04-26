@@ -8,9 +8,9 @@ import (
 
 	"bou.ke/monkey"
 	"github.com/golang/mock/gomock"
+	"github.com/lucheng0127/gsec/agent/pkg/pkt"
 	"github.com/lucheng0127/gsec/mocks"
 	"github.com/lucheng0127/gsec/mocks/mock_net"
-	"github.com/lucheng0127/gsec/pkg/pkt"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/suite"
 )

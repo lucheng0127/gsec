@@ -3,7 +3,7 @@ package auth
 import (
 	"errors"
 
-	"github.com/lucheng0127/gsec/pkg/cipher"
+	"github.com/lucheng0127/gsec/agent/pkg/cipher"
 )
 
 type Auth interface {

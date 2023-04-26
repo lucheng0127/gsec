@@ -92,10 +92,7 @@ func TestTOTPAuth_Validate(t *testing.T) {
 			//	})
 			//}
 
-			ta := &TOTPAuth{
-				username: tt.fields.username,
-				secret:   tt.fields.secret,
-			}
+			ta := NewTOTPAuth(tt.fields.username, tt.fields.secret)
 			got, err := ta.Validate(tt.args.data)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("TOTPAuth.Validate() error = %v, wantErr %v", err, tt.wantErr)
