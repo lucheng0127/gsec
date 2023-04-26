@@ -21,8 +21,7 @@ func (ta *TOTPAuth) Validate(data []byte) (bool, error) {
 		return false, err
 	}
 
-	dataInt := binary.BigEndian.Uint32(data)
-	if fmt.Sprintf("%06d", dataInt) != code {
+	if string(data) != code {
 		return false, errors.New("wrong one time passwd")
 	}
 
