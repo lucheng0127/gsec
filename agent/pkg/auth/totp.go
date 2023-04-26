@@ -30,7 +30,7 @@ func (ta *TOTPAuth) Validate(data []byte) (bool, error) {
 }
 
 func GenerateCode(secret string) (string, error) {
-	// TOTP algorithm refer to https://jacob.jkrall.net/totp
+	// TOTP algorithm refer to https://datatracker.ietf.org/doc/html/rfc6238
 	secretBytes, err := base32.StdEncoding.DecodeString(secret)
 	if err != nil {
 		return "", err
