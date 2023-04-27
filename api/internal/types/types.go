@@ -11,3 +11,19 @@ type LoginResponse struct {
 	Token    string `json:"token"`
 	Expire   int64  `json:"expire"`
 }
+
+type IpsecSA struct {
+	ReqID string `json:"reqid"`
+	Src   string `json:"src"`
+	Dst   string `json:"dst"`
+}
+
+type IpsecRequest struct {
+	ReqID string `json:"reqid,optional"`
+	Src   string `json:"src,optional"`
+	Dst   string `json:"dst,optional"`
+}
+
+type IpsecResponse struct {
+	Data []IpsecSA `json:"data"`
+}

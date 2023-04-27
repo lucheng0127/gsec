@@ -6,3 +6,7 @@ Rpc:
   Endpoints:
     - 127.0.0.1:8080
   NonBlock: true
+
+Auth:
+  AccessSecret: IsASecret
+  AccessExpire: 216000

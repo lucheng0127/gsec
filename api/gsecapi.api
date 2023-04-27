@@ -7,16 +7,34 @@ info (
 	email: "lucheng0127@outlook.com"
 )
 
-type loginRequest {
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
+type (
+	loginRequest {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
 
-type loginResponse {
-	Username string `json:"username"`
-	Token    string `json:"token"`
-	Expire   int64  `json:"expire"`
-}
+	loginResponse {
+		Username string `json:"username"`
+		Token    string `json:"token"`
+		Expire   int64  `json:"expire"`
+	}
+
+	IpsecSA {
+		ReqID string `json:"reqid"`
+		Src   string `json:"src"`
+		Dst   string `json:"dst"`
+	}
+
+	ipsecRequest {
+		ReqID string `json:"reqid,optional"`
+		Src   string `json:"src,optional"`
+		Dst   string `json:"dst,optional"`
+	}
+
+	ipsecResponse {
+		Data []IpsecSA `json:"data"`
+	}
+)
 
 service gsec-api {
 	@doc(
@@ -25,4 +43,12 @@ service gsec-api {
 	
 	@handler Login
 	post /login(loginRequest) returns(loginResponse)
+}
+
+@server(
+	jwt: Auth
+)
+service gsec-api {
+	@handler ipsec
+	get /ipsec/pairs(ipsecRequest) returns(ipsecResponse)
 }

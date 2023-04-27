@@ -10,8 +10,6 @@ message LoginRequest {
 
 message LoginResponse {
   string username = 1;
-  string token = 2;
-  int64 expire = 3;
 }
 
 service Gsecagent {

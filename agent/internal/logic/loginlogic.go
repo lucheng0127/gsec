@@ -42,12 +42,8 @@ func (l *LoginLogic) Login(in *gsecagent.LoginRequest) (*gsecagent.LoginResponse
 	if !isValid {
 		return nil, fmt.Errorf("password of user [%s] not match", in.Username)
 	}
-	// Generate jwt
-	// TODO(shawnlu): Implement it
 
 	return &gsecagent.LoginResponse{
 		Username: in.Username,
-		Token:    "nothing right now",
-		Expire:   123,
 	}, nil
 }
