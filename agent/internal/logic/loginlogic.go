@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	"github.com/lucheng0127/gsec/agent/internal/svc"
@@ -40,7 +41,7 @@ func (l *LoginLogic) Login(in *gsecagent.LoginRequest) (*gsecagent.LoginResponse
 	}
 
 	if !isValid {
-		return nil, fmt.Errorf("password of user [%s] not match", in.Username)
+		return nil, errors.New("totp auth failed")
 	}
 
 	return &gsecagent.LoginResponse{
