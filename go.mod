@@ -10,6 +10,8 @@ require (
 	github.com/golang/mock v1.6.0
 	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.8.2
+	github.com/vishvananda/netlink v1.1.0
+	github.com/vishvananda/netns v0.0.0-20191106174202-0a2b9b5464df
 	github.com/zeromicro/go-zero v1.5.2
 	google.golang.org/grpc v1.54.0
 	google.golang.org/protobuf v1.30.0
